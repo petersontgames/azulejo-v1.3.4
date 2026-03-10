@@ -813,26 +813,107 @@ input[type="range"] {
 }
 
 /* Responsiveness */
-@media (max-width: 1200px) {
+@media (max-width: 1280px) {
   main {
+    grid-template-columns: 300px 1fr;
+    max-width: 100%;
+  }
+  
+  .panel:last-child {
+    grid-column: 1 / -1;
+    display: grid;
     grid-template-columns: 1fr 1fr;
   }
-
+  
   .bottom-bar {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  header {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .nav-actions {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
   main {
+    padding: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  .panel:last-child {
     grid-template-columns: 1fr;
   }
 
   .bottom-bar {
     grid-template-columns: 1fr;
   }
+}
 
-  .cost-breakdown {
-    display: none;
+@media (max-width: 600px) {
+  .logo-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  h1 {
+    font-size: 1.1rem;
+  }
+
+  .card {
+    padding: 1.1rem;
+  }
+
+  .tile-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .result-main {
+    font-size: 2rem;
+  }
+
+  .total-main .cost-value {
+    font-size: 1.8rem;
+  }
+  
+  .total-main {
+    padding: 1rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .canvas-card {
+    height: 350px;
+  }
+
+  .terminal-card {
+    height: 150px;
+  }
+}
+
+/* Touch optimizations for Mobile */
+@media (pointer: coarse) {
+  input[type="number"], 
+  button, 
+  .mode-btn, 
+  .tile-btn,
+  .arg-btn {
+    min-height: 44px; /* Apple/Google recommended touch size */
+  }
+
+  .x2-btn {
+    padding: 0 12px;
   }
 }
