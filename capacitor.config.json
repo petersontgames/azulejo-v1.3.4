@@ -1,6 +1,5 @@
 {
     "appId": "com.azulejocalc.v134",
     "appName": "AzulejoCalc 1.3.4",
-    "webDir": ".",
-    "bundledWebRuntime": false
+    "webDir": "www"
 }
