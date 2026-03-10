@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AzulejoCalc 1.3.4 — Calculadora Premium</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+
+<body class="mode-azulejo">
+
+    <!-- HEADER / NAVIGATION -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-grid">
+                <div class="logo-tile"></div>
+                <div class="logo-tile"></div>
+                <div class="logo-tile"></div>
+                <div class="logo-tile"></div>
+            </div>
+            <h1 id="mainTitle">AZULEJO<span class="sep">/</span><span class="highlight">CALC</span></h1>
+            <div id="versionBadge" class="version-badge">v1.3.4</div>
+        </div>
+
+        <div class="nav-actions">
+            <div class="mode-switcher">
+                <button id="btnAzulejo" class="mode-btn active">AZULEJO</button>
+                <button id="btnPiso" class="mode-btn">PISO</button>
+            </div>
+            <button id="btnLimpar" class="mode-btn"
+                style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2);">LIMPAR</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- LEFT PANEL: Inputs -->
+        <div class="panel">
+            <div class="card">
+                <div class="card-title">📐 Dimensões do ambiente</div>
+
+                <div class="input-row">
+                    <div class="input-field">
+                        <label>Comprimento</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="comp" value="" step="0.01">
+                            <button class="x2-btn" data-x2-target="comp">×2</button>
+                            <span class="unit">m</span>
+                        </div>
+                        <div id="comp-preview" class="input-preview"></div>
+                    </div>
+                    <div class="input-field">
+                        <label>Largura</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="larg" value="" step="0.01">
+                            <button class="x2-btn" data-x2-target="larg">×2</button>
+                            <span class="unit">m</span>
+                        </div>
+                        <div id="larg-preview" class="input-preview"></div>
+                    </div>
+                </div>
+
+                <div id="amb2Block" style="display: none;">
+                    <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid var(--border-color);">
+                    <div class="card-title">📐 Dimensões do ambiente 2</div>
+                    <div class="input-row">
+                        <div class="input-field">
+                            <label>Comprimento 2</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="comp2" value="" step="0.01">
+                                <button class="x2-btn" data-x2-target="comp2">×2</button>
+                                <span class="unit">m</span>
+                            </div>
+                            <div id="comp2-preview" class="input-preview"></div>
+                        </div>
+                        <div class="input-field">
+                            <label>Largura 2</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="larg2" value="" step="0.01">
+                                <button class="x2-btn" data-x2-target="larg2">×2</button>
+                                <span class="unit">m</span>
+                            </div>
+                            <div id="larg2-preview" class="input-preview"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="amb3Block" style="display: none;">
+                    <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid var(--border-color);">
+                    <div class="card-title">📐 Dimensões do ambiente 3</div>
+                    <div class="input-row">
+                        <div class="input-field">
+                            <label>Comprimento 3</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="comp3" value="" step="0.01">
+                                <button class="x2-btn" data-x2-target="comp3">×2</button>
+                                <span class="unit">m</span>
+                            </div>
+                            <div id="comp3-preview" class="input-preview"></div>
+                        </div>
+                        <div class="input-field">
+                            <label>Largura 3</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="larg3" value="" step="0.01">
+                                <button class="x2-btn" data-x2-target="larg3">×2</button>
+                                <span class="unit">m</span>
+                            </div>
+                            <div id="larg3-preview" class="input-preview"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="amb4Block" style="display: none;">
+                    <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid var(--border-color);">
+                    <div class="card-title">📐 Dimensões do ambiente 4</div>
+                    <div class="input-row">
+                        <div class="input-field">
+                            <label>Comprimento 4</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="comp4" value="" step="0.01">
+                                <button class="x2-btn" data-x2-target="comp4">×2</button>
+                                <span class="unit">m</span>
+                            </div>
+                            <div id="comp4-preview" class="input-preview"></div>
+                        </div>
+                        <div class="input-field">
+                            <label>Largura 4</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="larg4" value="" step="0.01">
+                                <button class="x2-btn" data-x2-target="larg4">×2</button>
+                                <span class="unit">m</span>
+                            </div>
+                            <div id="larg4-preview" class="input-preview"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                    <button id="addAmbBtn" class="mode-btn"
+                        style="flex: 1; border: 1px dashed var(--glass-border); justify-content: center;">
+                        ＋ Adicionar ambiente
+                    </button>
+                    <button id="remAmbBtn" class="mode-btn"
+                        style="flex: 1; border: 1px dashed var(--glass-border); justify-content: center; display: none;">
+                        － Remover ambiente
+                    </button>
+                </div>
+
+                <div class="slider-container">
+                    <div class="slider-header">
+                        <label>Porcentagem de perda</label>
+                        <span id="perdaDisplay"
+                            style="font-size: 0.75rem; font-weight: 700; color: var(--accent-gold);">0%</span>
+                    </div>
+                    <input type="range" id="perda" min="0" max="25" value="0">
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🧱 Tipo de revestimento</div>
+                <div id="tileGrid" class="tile-grid">
+                    <button class="tile-btn active" data-w="20" data-h="20">20×20</button>
+                    <button class="tile-btn" data-w="30" data-h="30">30×30</button>
+                    <button class="tile-btn" data-w="45" data-h="45">45×45</button>
+                    <button class="tile-btn" data-w="60" data-h="60">60×60</button>
+                    <button class="tile-btn" data-w="80" data-h="80">80×80</button>
+                    <button class="tile-btn" data-w="90" data-h="90">90×90</button>
+                    <button class="tile-btn" data-w="60" data-h="120">60×120</button>
+                    <button class="tile-btn" data-w="120" data-h="120">1.2×1.2</button>
+                </div>
+
+                <div class="input-row" style="margin-bottom: 0;">
+                    <div class="input-field">
+                        <label>Largura (cm)</label>
+                        <input type="number" id="cw" placeholder="Alt">
+                    </div>
+                    <div class="input-field">
+                        <label>Altura (cm)</label>
+                        <input type="number" id="ch" placeholder="Larg">
+                    </div>
+                </div>
+
+                <div class="input-field" style="margin-top: 1rem;">
+                    <label>Metragem por caixa (manual)</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="cxM2" placeholder="Auto" step="0.01">
+                        <button id="cxM2ClearBtn" class="clear-btn"
+                            style="position: absolute; right: 8px; display: none;">✕</button>
+                    </div>
+                    <div id="cxM2Hint" class="input-preview">deixe vazio para calcular pelo tamanho</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">💰 Preço por caixa</div>
+                <div class="input-wrapper">
+                    <input type="number" id="preco" value="" step="0.01">
+                    <span class="unit">R$ (cx)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CENTER PANEL: Canvas -->
+        <div class="panel">
+            <div class="card canvas-card">
+                <div id="panelTitleCanvas" class="canvas-header">// Visualização do revestimento em tempo real</div>
+                <div class="canvas-container" id="canvasContainer">
+                    <div class="canvas-overlay-text" style="top: 2rem; left: 50%; transform: translateX(-50%);">
+                        <span id="dimTop" class="dim-tag">0.00 m</span>
+                    </div>
+                    <div class="canvas-overlay-text" style="bottom: 2rem; left: 50%; transform: translateX(-50%);">
+                        <span id="dimBottom" class="dim-tag">0.00 m</span>
+                    </div>
+                    <div class="canvas-overlay-text"
+                        style="left: 2rem; top: 50%; transform: translateY(-50%) rotate(-90deg);">
+                        <span id="dimSideLeft" class="dim-tag">0.00 m</span>
+                    </div>
+                    <div class="canvas-overlay-text"
+                        style="right: 2rem; top: 50%; transform: translateY(-50%) rotate(90deg);">
+                        <span id="dimSide" class="dim-tag">0.00 m</span>
+                    </div>
+
+                    <canvas id="roomCanvas" width="600" height="400"></canvas>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="canvas-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <span>// Console de cálculo (terminal)</span>
+                    <button id="btnPDF" class="mode-btn"
+                        style="font-size: 0.7rem; padding: 0.3rem 0.8rem; height: auto;">
+                        📄 Gerar PDF
+                    </button>
+                </div>
+                <div id="terminal" class="terminal-card">
+                    AZULEJO/CALC v1.3.4
+                    -----------------
+                    Inicializando modulos... OK
+                    Aguardando entrada de dados...
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL: Results -->
+        <div class="panel">
+            <div class="card">
+                <div class="result-group">
+                    <label>Área total</label>
+                    <div id="rArea" class="result-main">0<span class="result-unit">m²</span></div>
+                    <div id="rAreaSub" class="result-sub">5,05 × 3,85</div>
+                    <div id="areaTotalRow" class="result-sub highlight-gold" style="display: none; margin-top: 4px;">
+                        <span>Combinado: </span><span id="areaTotalVal">0 m²</span>
+                    </div>
+                    <div id="areaSub2" class="result-sub" style="color: var(--text-muted); font-size: 0.65rem;"></div>
+                    <div id="areaSub3" class="result-sub" style="color: var(--text-muted); font-size: 0.65rem;"></div>
+                    <div id="areaSub4" class="result-sub" style="color: var(--text-muted); font-size: 0.65rem;"></div>
+
+                </div>
+
+                <div class="result-group">
+                    <label>Peças necessárias</label>
+                    <div id="rSem" class="result-main">0<span class="result-unit">un.</span></div>
+                    <div class="result-sub">exato sem margem de corte</div>
+                </div>
+
+                <div class="result-group">
+                    <label>Total com margem</label>
+                    <div id="rCom" class="result-main" style="color: var(--accent-gold);">0<span
+                            class="result-unit">un.</span></div>
+                    <div id="rComSub" class="result-sub">+10% de segurança</div>
+                </div>
+
+                <div class="result-group" style="margin-bottom: 0;">
+                    <label>Quantidade de caixas</label>
+                    <div id="rCx" class="result-main">0<span class="result-unit">cx.</span></div>
+                    <div id="rCxSub" class="result-sub">~1,44 m²/cx</div>
+                </div>
+            </div>
+
+            <div id="blockCusto" class="card" style="border-color: var(--accent-gold);">
+                <div class="result-group" style="margin-bottom: 0;">
+                    <label style="color: var(--accent-gold);">Custo dos azulejos</label>
+                    <div id="rCusto" class="result-main" style="color: var(--accent-gold);">R$ 0,00</div>
+                    <div id="rCustoSub" class="result-sub">R$ 89,90/cx × 0 cx</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOM BAR -->
+        <div class="bottom-bar">
+            <!-- Argamassa -->
+            <div class="card">
+                <div class="card-title">🌿 Argamassa</div>
+                <div class="arg-config">
+                    <div id="argTipos" class="arg-opts">
+                        <button class="arg-tipo-btn arg-btn active" data-consumo="4.5">AC-I</button>
+                        <button class="arg-tipo-btn arg-btn" data-consumo="5.5">AC-II</button>
+                        <button class="arg-tipo-btn arg-btn" data-consumo="7.0">AC-III</button>
+                    </div>
+                    <div id="argSacoOpts" class="arg-opts">
+                        <button class="arg-saco-btn arg-btn active" data-kg="20">20kg</button>
+                        <button class="arg-saco-btn arg-btn" data-kg="25">25kg</button>
+                    </div>
+                    <div class="input-row" style="margin-bottom: 0;">
+                        <input type="number" id="precoArgamassa" placeholder="Preço/saco">
+                        <div class="input-wrapper">
+                            <input type="number" id="argQtdManual" placeholder="Manual">
+                            <button id="argClearBtn" class="clear-btn"
+                                style="position: absolute; right: 4px; display: none;">✕</button>
+                            <span id="argManualBadge" class="manual-badge">● manual</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                        <div>
+                            <div id="argConsumo" class="cost-value" style="font-size: 1.25rem;">0<span
+                                    class="arg-unit">kg</span></div>
+                            <div id="argConsumoSub" class="result-sub">4,5kg/m²</div>
+                        </div>
+                        <div>
+                            <div id="argSacos" class="cost-value" style="font-size: 1.25rem;">0<span
+                                    class="arg-unit">sacos</span></div>
+                            <div id="argSacosSub" class="result-sub">sacos 20kg</div>
+                        </div>
+                    </div>
+                    <div id="argCusto" class="cost-value" style="color: var(--accent-green);">R$ 0,00</div>
+                    <div id="argCustoSub" class="result-sub">informe o preço</div>
+                </div>
+            </div>
+
+            <!-- Mão de Obra -->
+            <div class="card">
+                <div class="card-title">👷 Mão de Obra</div>
+                <div class="arg-config">
+                    <div class="input-row">
+                        <div class="input-wrapper">
+                            <input type="number" id="maoM2" placeholder="R$/m²">
+                        </div>
+                        <div class="input-wrapper">
+                            <input type="number" id="maoFixo" placeholder="Fixo R$">
+                        </div>
+                    </div>
+                    <input type="text" id="maoObs" placeholder="Observações (ex: inclui rejunte)"
+                        style="margin-bottom: 0.5rem;">
+
+                    <div style="display: flex; gap: 1.5rem;">
+                        <div>
+                            <div id="maoResultM2" class="cost-value" style="font-size: 1.25rem;">R$ 0,00</div>
+                            <div id="maoResultM2Sub" class="result-sub">variável</div>
+                        </div>
+                        <div>
+                            <div id="maoResultFixo" class="cost-value" style="font-size: 1.25rem;">R$ 0,00</div>
+                            <div id="maoResultFixoSub" class="result-sub">fixo</div>
+                        </div>
+                    </div>
+                    <div id="maoResultTotal" class="cost-value" style="color: var(--accent-blue);">R$ 0,00</div>
+                    <div id="maoResultObs" class="result-sub" style="font-style: italic;"></div>
+                </div>
+            </div>
+
+            <!-- empty for spacing or future feature -->
+            <div style="visibility: hidden;"></div>
+
+            <!-- Final Cost Bar -->
+            <div class="total-main">
+                <div class="cost-label">INVESTIMENTO TOTAL ESTIMADO</div>
+                <div id="ctTotal" class="cost-value">R$ 0,00</div>
+                <div style="display: flex; gap: 1rem; margin-top: 0.5rem; justify-content: flex-end;">
+                    <div class="cost-item" style="align-items: flex-end;">
+                        <span class="cost-label">Azulejos</span>
+                        <span id="ctAzulejos" class="cost-value" style="font-size: 0.85rem;">R$ 0,00</span>
+                    </div>
+                    <div class="cost-item" style="align-items: flex-end;">
+                        <span class="cost-label">Argamassa</span>
+                        <span id="ctArgamassa" class="cost-value" style="font-size: 0.85rem;">R$ 0,00</span>
+                    </div>
+                    <div class="cost-item" style="align-items: flex-end;">
+                        <span class="cost-label">Mão de obra</span>
+                        <span id="ctMaoObra" class="cost-value" style="font-size: 0.85rem;">R$ 0,00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER (Floating alternative) -->
+    <!-- The cost bar is currently in-flow but we can sticky it if needed -->
+
+    <!-- CHANGELOG POPUP -->
+    <div id="clOverlay" class="cl-overlay"></div>
+    <div id="changelogPopup" class="cl-popup">
+        <div class="cl-header">
+            <h3 style="font-weight: 800; letter-spacing: -0.01em;">HISTÓRICO DE VERSÕES</h3>
+            <button onclick="document.getElementById('clOverlay').click()"
+                style="background:transparent; border:none; color:var(--text-muted); cursor:pointer; font-size: 1.5rem;">✕</button>
+        </div>
+        <div id="changelogBody" class="cl-body">
+            <!-- Rendered by JS -->
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script type="module" src="./src/index.js"></script>
+
+</body>
+
+</html>
