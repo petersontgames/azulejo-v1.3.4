@@ -818,13 +818,13 @@ input[type="range"] {
     grid-template-columns: 300px 1fr;
     max-width: 100%;
   }
-  
+
   .panel:last-child {
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
-  
+
   .bottom-bar {
     grid-template-columns: 1fr 1fr;
   }
@@ -837,7 +837,7 @@ input[type="range"] {
     padding: 1rem;
     text-align: center;
   }
-  
+
   .nav-actions {
     width: 100%;
     justify-content: center;
@@ -859,58 +859,101 @@ input[type="range"] {
 }
 
 @media (max-width: 600px) {
+  header {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+
   .logo-container {
-    flex-direction: column;
+    flex-direction: row;
+    /* Volta para linha mas menor */
     gap: 0.5rem;
   }
 
   h1 {
-    font-size: 1.1rem;
+    font-size: 1rem;
+  }
+
+  main {
+    padding: 0.5rem;
+    /* Padding lateral menor para ganhar espaço */
+    gap: 0.75rem;
   }
 
   .card {
-    padding: 1.1rem;
+    padding: 0.85rem;
+    /* Cards mais compactos */
+    border-radius: 12px;
   }
 
   .tile-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 0.4rem;
   }
 
   .result-main {
-    font-size: 2rem;
+    font-size: 1.75rem;
+    /* Números menores para não cortar */
   }
 
-  .total-main .cost-value {
-    font-size: 1.8rem;
+  .result-sub {
+    font-size: 0.65rem;
   }
-  
+
   .total-main {
-    padding: 1rem;
+    padding: 0.75rem;
     align-items: center;
     text-align: center;
   }
 
+  .total-main .cost-value {
+    font-size: 1.6rem;
+    /* Valor total menor */
+  }
+
   .input-row {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .input-wrapper input {
+    padding: 0.6rem;
+    /* Inputs levemente menores */
   }
 
   .canvas-card {
-    height: 350px;
+    height: 300px;
+    /* Reduzindo altura do canvas */
   }
 
   .terminal-card {
-    height: 150px;
+    height: 120px;
+  }
+
+  /* Ajustando o footer flutuante se houver */
+  .cost-footer {
+    padding: 1rem;
+  }
+
+  .cost-breakdown {
+    gap: 1rem;
+  }
+
+  .cost-value {
+    font-size: 1rem;
   }
 }
 
 /* Touch optimizations for Mobile */
 @media (pointer: coarse) {
-  input[type="number"], 
-  button, 
-  .mode-btn, 
+
+  input[type="number"],
+  button,
+  .mode-btn,
   .tile-btn,
   .arg-btn {
-    min-height: 44px; /* Apple/Google recommended touch size */
+    min-height: 44px;
+    /* Apple/Google recommended touch size */
   }
 
   .x2-btn {
